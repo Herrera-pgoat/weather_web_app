@@ -1,0 +1,17 @@
+{% load static %}
+<html>
+  <head>
+  	<!--We are getting the stylesheet bootstrap.css in the static file and loading it here -->
+  <link rel="stylesheet" href="{% static 'css/bootstrap.css' %}">
+    <title>CS 440</title>
+	</head>
+	<body>
+
+		<!--We are going to the partials/_navbar.html and putting what is in that html file right here -->
+		{% include 'partials/_navbar.html' %}
+	
+		{% block content%} {% endblock %}
+	  	<!--We are getting the javascript in the bootstrap.bundle.min.js in the static file and loading it here -->
+		<script src="{% static 'js/bootstrap.bundle.min.js' %}"> </script
+	</body>
+</html>

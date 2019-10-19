@@ -1,0 +1,8 @@
+{% extends 'base.html' %}
+
+{% block content %}
+	<p> about page </p>
+	<form action="{% url 'index' %}">
+		<input type="submit" value="Read Index page" />
+	</form>
+{% endblock %}
