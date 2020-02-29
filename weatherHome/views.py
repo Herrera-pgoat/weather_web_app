@@ -115,6 +115,7 @@ def index(request):
 				return render(request,'weatherHome/index.html',context=context)
 		else:
 			print('hello there is a big mistake if you see this because aurora should be in there by default ')
+            return render(request,'weatherHome/index.html')
 			#there is no way that aurora is not in the database considering I manually put it in so we don't need anything in the else 
 			#if I know that aurora is in there do I even need this if else?!?!?
 			#I don't think so 
