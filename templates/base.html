@@ -3,7 +3,7 @@
   <head>
   	<!--We are getting the stylesheet bootstrap.css in the static file and loading it here -->
   <link rel="stylesheet" href="{% static 'css/bootstrap.css' %}">
-    <title>CS 440</title>
+    <title>{% block title %}  {%endblock%}</title>
 	</head>
 	<body>
 
@@ -12,6 +12,9 @@
 	
 		{% block content%} {% endblock %}
 	  	<!--We are getting the javascript in the bootstrap.bundle.min.js in the static file and loading it here -->
-		<script src="{% static 'js/bootstrap.bundle.min.js' %}"> </script
+	  	<!-- The bootstrap.bundle.min.js needs the jquery loaded so we have to do the jquery first that way we know it is already in there and that
+		all the code in there work		-->
+		<script src="{% static 'js/jquery-3.4.1.js' %}" > </script>
+		<script src="{% static 'js/bootstrap.bundle.min.js' %}"> </script>
 	</body>
 </html>

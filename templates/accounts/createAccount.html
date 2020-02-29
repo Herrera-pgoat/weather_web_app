@@ -1,0 +1,36 @@
+{% extends 'base.html' %}
+
+{% block title %} Weather Create Accout {%endblock%}
+
+{% load static %}
+{% block content %}
+	<h1> Register page </h1>
+	
+	<!--I want to make this look prettier maybe have it be a center square that 
+		has all the forms for them to fill out -->
+	<div class="card-body">
+		{% include 'partials/_alerts.html' %}
+		<form action="{% url 'createAccount' %}" method="POST">
+		{% csrf_token %}
+		<!--I think what I will do is have all of this information go into the user database that they made for us-->
+			<div class="form-group">
+				<span > Enter First Name: </span><br> <input type="text" value="" name="userFirstName" required/>
+				<br>
+				<span > Enter Last Name: </span> <input type="text" value="" name="userLastName" required/>
+				<br>
+				<span > Enter username: </span> <input type="text" value="" name="usernameText" required/>
+				<br>
+				<span> Enter Email: &nbsp &nbsp&nbsp &nbsp </span> <input type="email" value="" name="userEmail" required/>
+				<br>
+			<!--</div> -->
+			<!-- <div class="form-group"> -->
+				<span> Enter password:</span> <input type="password" value="" name="passwordText" required/>
+				<br>
+				<span> Confirm password:</span> <input type="password" class="form-control" name="passwordTextConfirm" required/>
+				<br>
+			</div>
+			<input type="submit" class="btn mx-5 mt-5" style="background-color:#406db4" value="Create Account" name="submit">
+		</form>
+	</div>
+
+{% endblock %}

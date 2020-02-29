@@ -1,0 +1,24 @@
+<!--This is for giving error messages for  -->
+{% if messages %}
+	{%for message in messages%}
+		<div id="message" class="container">
+		<!-- the {{message.tags}} tells us what kind of message we got and how it will show in the screen through bootstrap(?)  -->
+			<div class="alert alert-{{message.tags}} alert-dismissible text-center" role="alert" >
+				<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+					<span aria-hidden="true">
+						&times;
+					</span>
+				</button>
+				<strong>
+				<!-- IF the message is an error message we start it with error the message  -->
+					{%if message.level == DEFAULT_MESSAGE_LEVELS.ERROR %}
+						Error:
+					{% else %}
+						{{ message.tags | title }}
+					{%endif%}
+				</strong>
+				{{ message }}
+			</div>
+		</div>
+	{% endfor %}	
+{% endif %}

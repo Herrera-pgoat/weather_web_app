@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+
+{% block title %} Weather Login {%endblock%}
+
+{% block content %}
+	<h1> Log in page </h1>
+	
+	<form action="{% url 'login' %}" method="POST">
+		{% csrf_token %}
+		<span > Enter username: </span> <input type="text" value="" name="usernameText" />
+		<br>
+		<span> Enter password: </span> <input type="password"  value="" name="passwordText" />
+		<br>
+		<input type="submit" class="btn mx-5 mt-5" style="background-color:#5990e9" value="Sign in" name="submit">
+	</form>
+{% endblock %}

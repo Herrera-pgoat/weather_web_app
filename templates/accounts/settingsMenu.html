@@ -1,0 +1,63 @@
+{% extends 'base.html' %}
+
+
+{% block title %} Weather | Adding Locations {%endblock%}
+
+{% block content %}
+<!--This is some internal css 
+makes the list I have in here have a max height of 200px so we don't see every country at once 
+and the overflow x means that any text that would overflow because it doesn't fit in horizontal bar we just don't see-->
+	<style>
+	.scrollable-menu {
+		height: auto;
+		max-height: 100px;
+		overflow-x: hidden;
+	}
+	</style>
+	
+	<!-- If the user is logged in then we display everything in this if--> 
+	{%if user.is_authenticated %}
+		<!-- A form that they put in the zipcode, city,state, country of the location they want the weather from and then they click a
+			button that will attach that location to their account. And when they go to the main screen they see the weather of locations they wanted--> 
+		<div class="card-body">
+			{% include 'partials/_alerts.html' %}
+			<!--This form takes us to settingsMenu view when we submit it -->
+			<form action="{% url 'settingsMenu' %}" method="POST">
+			{% csrf_token %}
+			<!-- Use this information to attach this location user wants weather from to users and a real location-->
+				<div class="form-group">
+					<span > Enter City Name: </span> <input type="text" value="" name="cityName" required/>
+					<br>
+					<span > Enter State Name: </span> <input type="text" value="" name="stateName" required/>
+					Enter N/A if not applicable 
+					<br>
+					<div class="btn-group">
+						<label for="countries">Choose Country: </label>
+						<select id="countries" name="country" class = "scrollable-menu" required> 
+					<!--	<ul class="dropdown-menu" role="menu">  -->
+							{% if countries %}
+								{% for country in countries %}
+									   <option value="{{country.countryName}}">{{country.countryName}}</option>
+								{% endfor %}
+							{% else %}
+									   <option value="nothing">nothing</option>
+							{% endif %}
+					<!--	</ul> -->
+						</select>
+					</div>
+					<br>
+					<span> Enter Zipcode: &nbsp </span> <input type="text" value="" name="zipcode" required/>
+					<br>
+				</div>
+				<input type="submit" class="btn mx-5 mt-5" style="background-color:#406db4" value="Add To Weather List" name="submit">
+			</form>
+		</div>
+	<!--If the user is not logged in then we display this stuff. Login and register links -->
+	{% else %}
+		<p class="nav-item">
+			<a class="nav-link" href="{% url 'login' %}">Log in</a>
+		</p>
+
+	{% endif %}
+	
+{% endblock %}

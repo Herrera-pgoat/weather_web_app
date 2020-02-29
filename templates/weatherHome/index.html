@@ -1,8 +1,26 @@
 {% extends 'base.html' %}
 
+{% block title %} Weather Thing Home {%endblock%}
+
 {% block content %}
-	<p> home page </p>
-	<form action="{% url 'about' %}">
-		<input type="submit" value="Read about page" />
-	</form>
+	<h1> Home Page </h1>
+	<!--In here we are going to have the messages display when we need them to :D-->
+	{% include 'partials/_alerts.html' %}
+	{%if user.is_authenticated %}
+		{% for weatherCity in finalWeatherInfoList%}
+			<p>Weather at {{weatherCity.cityName}},{{weatherCity.stateName}} Country:{{weatherCity.countryName}} </p>
+			<p>Temperature: {{weatherCity.temperature}}    Feels Like: {{weatherCity.temperatureFeel}} </p>
+			<p>Current Wind: {{weatherCity.wind}} </p>
+			<p>Current Snow: {{weatherCity.snow}} </p>
+			<p>Current Rain: {{weatherCity.rain}} </p>
+			<p> </p>
+		{% endfor %}
+	
+	{% else %}
+		<p> temperature in aurora right now?: {{ temperature }} </p>
+		<p> The html in location HTML : {{location}} </p>
+	
+	{% endif %}
+
+
 {% endblock %}

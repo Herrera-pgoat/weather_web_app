@@ -1,5 +1,5 @@
-<nav class="navbar  navbar-expand-lg navbar-light bg-light">
-  <a class="navbar-brand " href="#">Weather thing</a>
+<nav class="navbar  navbar-expand-lg navbar-light bg-success">
+  <a class="navbar-brand " href="{% url 'index' %}">Weather thing</a>
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
   </button>
@@ -8,14 +8,34 @@
   <!-- I think the ml-auto pushes these things in the nav-bar very far from the left. So it places us right. It is making very far margins on the right--> 
     <ul class="navbar-nav ml-auto">
       <li class="nav-item">
-        <a class="nav-link mr-auto" href="#">About</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="#">Log in</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="#" tabindex="-1" aria-disabled="true">Create Account</a>
-      </li>
+        <a class="nav-link " href="{% url 'about' %}">About</a>
+	   </li>
+
+		<!-- If the user is logged in then we display everything in this if--> 
+		{%if user.is_authenticated %}
+			<!-- It works right now because we see hello. We are logged in as the admin currently --> 
+			<!-- Giving them a link that will take them to their settings and we also have the link say their name and settings after--> 
+			<li class="nav-item">
+				<a class="nav-link" href="{% url 'settingsMenu' %}">{{user.username}} Add Weather Places</a>
+			</li>
+			<!-- Give them an option to log out because why wouldn't they need that --> 
+			<li class="nav-item">
+				<a class="nav-link" href="javascript:{document.getElementById('logout').submit()}">Logout</a>
+				<form action="{% url 'logout' %}" method = "POST" id="logout">
+					{% csrf_token %}
+					<input type="hidden">
+				</form>
+			</li>
+
+		<!--If the user is not logged in then we display this stuff. Login and register links -->
+		{% else %}
+			<li class="nav-item">
+				<a class="nav-link" href="{% url 'login' %}">Log in</a>
+			</li>
+			<li class="nav-item">
+				<a class="nav-link" href="{% url 'createAccount' %}" tabindex="-1" aria-disabled="true">Create Account</a>
+		    </li>
+		{% endif %}
     </ul>
   </div>
 </nav>
