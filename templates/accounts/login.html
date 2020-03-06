@@ -4,7 +4,7 @@
 
 {% block content %}
 	<h1> Log in page </h1>
-	
+	{% include 'partials/_alerts.html' %}
 	<form action="{% url 'login' %}" method="POST">
 		{% csrf_token %}
 		<span > Enter username: </span> <input type="text" value="" name="usernameText" />

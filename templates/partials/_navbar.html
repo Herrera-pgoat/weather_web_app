@@ -16,7 +16,7 @@
 			<!-- It works right now because we see hello. We are logged in as the admin currently --> 
 			<!-- Giving them a link that will take them to their settings and we also have the link say their name and settings after--> 
 			<li class="nav-item">
-				<a class="nav-link" href="{% url 'settingsMenu' %}">{{user.username}} Add Weather Places</a>
+				<a class="nav-link" href="{% url 'addLoc' %}">{{user.username}} Add Weather Places</a>
 			</li>
 			<!-- Give them an option to log out because why wouldn't they need that --> 
 			<li class="nav-item">

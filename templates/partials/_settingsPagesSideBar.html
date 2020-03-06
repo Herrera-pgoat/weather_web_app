@@ -1,0 +1,20 @@
+<!-- Right here is the sidebar which gives the user the option to add or remove a weather location
+col-lg-2 means that in large screens we take up 2 columns of the 12 column grid bootstrap lays out for us--> 	
+<div class="col-12 col-md-3 col-lg-2 col-xl-2 bd-sidebar " >
+<!-- I think this probably needs a class! I need to learn bootstrap better... -->
+<nav class="" id="sidebar">
+	<div class="sidebar-header">
+		<h3>Options </h3>
+	</div>
+	<ul class="list-unstyled components">
+		<!-- GOING TO NEED TO ADD LOCATIONS FOR EACH LINK ADD LOCATION CAN STAY HERE BUT REMOVE LOCATION MUST GO SOMEWHERE ELSE
+			IN ALL HONESTY MIGHT NEED THEM TO BE IN THEIR OWN DIRECTORY STUFF -->
+		<li>
+			<a class="bd-toc-item" style="color:gray"href="{% url 'addLoc'%}">Add Location</a>
+		</li>
+		<li>
+			<a class="bd-toc-item" style="color:gray" href="{% url 'removeLoc'%}">Remove Location</a>
+		</li>
+	</ul>		
+</nav>
+</div>

@@ -1,0 +1,63 @@
+{% extends 'base.html' %}
+
+{% block title %} Weather | Remove Locations {%endblock%}
+
+{% block content %}
+<!--This is some internal css 
+makes the list I have in here have a max height of 200px so we don't see every country at once 
+and the overflow x means that any text that would overflow because it doesn't fit in horizontal bar we just don't see-->
+	<style>
+	.scrollable-menu {
+		height: auto;
+		max-height: 100px;
+		overflow-x: hidden;
+	}
+	</style>
+	
+	<!-- If the user is logged in then we display everything in this if--> 
+	{%if user.is_authenticated %}
+	<!-- This gives us a div that takes up the whole screen that settingsMenu.html owns--> 
+	<div class="row flex-xl nowrap">
+		<!-- grabbing the sidebar and putting it here! -->
+		{% include 'partials/_settingsPagesSideBar.html' %}
+
+		<!-- A form that they put in the zipcode, city,state, country of the location they want the weather from and then they click a
+			button that will attach that location to their account. And when they go to the main screen they see the weather of locations they wanted--> 
+		<div id="content" class="col-12 col-md-9 col-xl-8 py-md-3 pl-md-5 bd-content card-body"  >
+		<!-- Including alerts here so that when they do add an item to the database we tell them that they did --> 
+			{% include 'partials/_alerts.html' %}
+			<!--This form takes us to settingsMenu view when we submit it -->
+			<form action="{% url 'removeLoc' %}" method="POST">
+			{% csrf_token %}
+			<!-- Use this information to attach this location user wants weather from to users and a real location-->
+				<div class="form-group">
+					<p> Select the city you want to remove </p>
+					<div class="btn-group">
+						<label for="cities">Choose City: </label>
+						<select id="cities" name="City" class = "scrollable-menu" required> 
+							{% if userCities %}
+								{% for city in userCities %}
+									<!--The user is selecting the name of the city but the value they are selecting is the cityCode. Primary Kkey of the table
+										This way it won't be too hard to delete once they select a city to remove-->
+									   <option value="{{city.cityCode.cityCode}}">{{city.cityCode}}</option>
+								{% endfor %}
+							{% else %}
+									   <option value="nothing">nothing</option>
+							{% endif %}
+						</select>
+					</div>
+					<br>
+				</div>
+				<input type="submit" class="btn mx-5 mt-5" style="background-color:#406db4" value="Remove City" name="submit">
+			</form>
+		</div>
+	</div>
+	<!--If the user is not logged in then we display this stuff. Login and register links -->
+	{% else %}
+		<p class="nav-item">
+			<a class="nav-link" href="{% url 'login' %}">Log in</a>
+		</p>
+
+	{% endif %}
+	
+{% endblock %}

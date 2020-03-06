@@ -55,7 +55,7 @@ class weather(models.Model):
 			return True
 			
 	def __str__(self):
-		return str(self.cityName) + str(self.cityCode)
+		return str(self.cityName) + " " + str(self.stateName) + " " +  str(self.countryName)
 		
 #This model is called user and it has attributes that we want the user table to hold
 #IT SEEMS LIKE I CAN'T SWAP THE USER MODEL MIDWAY THROUGH PRODUCTION OF A DJANGO APPLICATION SO I WILL HAVE TO USE THE DEFAULT ONE

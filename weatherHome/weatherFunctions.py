@@ -102,7 +102,8 @@ def getCityCode(cityName, countryName, zipcode):
 			if lattMore > lattJsonLocal and lattLess < lattJsonLocal:
 				if longMore > longJsonLocal and longLess < longJsonLocal:
 					return city['id']
-					
+	elif len(listOfCities) == 0:
+		return 'badData'
 	else: 
 		#only one city with that name and in that country
 		singleCity = listOfCities[0]
