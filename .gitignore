@@ -3,3 +3,4 @@ pharmProject/__pycache__
 settings/__pycache__
 accounts/__pycache__
 #hello
+local_settings.py
