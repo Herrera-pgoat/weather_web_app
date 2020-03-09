@@ -3,19 +3,24 @@
 {% block title %} Weather Thing Home {%endblock%}
 
 {% block content %}
-	<h1> Home Page </h1>
 	<!--In here we are going to have the messages display when we need them to :D-->
 	{% include 'partials/_alerts.html' %}
 	{%if user.is_authenticated %}
+		<div id="allWeathers" class="d-flex flex-wrap" style="">
 		{% for weatherCity in finalWeatherInfoList%}
-			<p>Weather at {{weatherCity.cityName}},{{weatherCity.stateName}} Country:{{weatherCity.countryName}} </p>
-			<p>Temperature: {{weatherCity.temperature}}    Feels Like: {{weatherCity.temperatureFeel}} </p>
-			<p>Current Wind: {{weatherCity.wind}} </p>
-			<p>Current Snow: {{weatherCity.snow}} </p>
-			<p>Current Rain: {{weatherCity.rain}} </p>
-			<p> </p>
+			<div id="eachWeatherThing" class="col-12 col-md-6 col-lg-4 " style="" >
+				<div class="card border-dark text-center " style="margin-top:50px;">
+					<h4 class="card-header " style="background-color:#4ebead"> Weather at {{weatherCity.cityName}},{{weatherCity.stateName}} Country:{{weatherCity.countryName}} </h4>
+					<div class="card-body">
+						<p>Temperature: {{weatherCity.temperature}}    Feels Like: {{weatherCity.temperatureFeel}} </p>
+						<p>Current Wind: {{weatherCity.wind}} </p>
+						<p>Current Snow: {{weatherCity.snow}} </p>
+						<p>Current Rain: {{weatherCity.rain}} </p>
+					</div>
+				</div>
+			</div>
 		{% endfor %}
-	
+		</div>
 	{% else %}
 		<p> temperature in aurora right now?: {{ temperature }} </p>
 		<p> The html in location HTML : {{location}} </p>
