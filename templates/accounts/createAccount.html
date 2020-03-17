@@ -4,32 +4,71 @@
 
 {% load static %}
 {% block content %}
-	<h1> Register page </h1>
+	<h1 class="container text-center mb-4"> Create Account </h1>
 	
 	<!--I want to make this look prettier maybe have it be a center square that 
 		has all the forms for them to fill out -->
-	<div class="card-body">
+	<div class="container">
 		{% include 'partials/_alerts.html' %}
-		<form action="{% url 'createAccount' %}" method="POST">
+		<form class="mb-5 col-lg-6 col-12 mx-auto" action="{% url 'createAccount' %}" method="POST">
 		{% csrf_token %}
 		<!--I think what I will do is have all of this information go into the user database that they made for us-->
 			<div class="form-group">
-				<span > Enter First Name: </span><br> <input type="text" value="" name="userFirstName" required/>
-				<br>
-				<span > Enter Last Name: </span> <input type="text" value="" name="userLastName" required/>
-				<br>
-				<span > Enter username: </span> <input type="text" value="" name="usernameText" required/>
-				<br>
-				<span> Enter Email: &nbsp &nbsp&nbsp &nbsp </span> <input type="email" value="" name="userEmail" required/>
-				<br>
-			<!--</div> -->
-			<!-- <div class="form-group"> -->
-				<span> Enter password:</span> <input type="password" value="" name="passwordText" required/>
-				<br>
-				<span> Confirm password:</span> <input type="password" class="form-control" name="passwordTextConfirm" required/>
-				<br>
+				<!--Each of these dl is a description list and they each have a label and the input that the user will put in  -->
+				<dl class="mb-3">
+					<dt > 
+						<label  for="firstNameForm" >Enter First Name: </label> 
+					</dt> 
+					<dd> 
+						<input id="firstNameForm" type="text" value="" class="form-control" name="userFirstName" required/> 
+					</dd>
+				</dl>
+				<!--Another description list and like the other one the mb-3 is margin at the bottom of the list  -->
+				<dl class="mb-3">
+					<dt>
+						<label for="lastNameForm" > Enter Last Name: </label>
+					</dt>
+					<dd>
+						 <input id="lastNameForm" type="text" value="" class="form-control" name="userLastName" required/>
+					</dd>
+				</dl>
+				<dl class="mb-3">
+					<dt>
+						<label for="usernameForm" > Enter Username: </label>
+					</dt>
+					<dd>
+						 <input id="usernameForm" type="text" value="" class="form-control" name="usernameText" required/>
+					</dd>
+				</dl>
+				<dl class="mb-3">
+					<dt>
+						<label for="emailForm" > Enter Email: </label>
+					</dt>
+					<dd>
+						 <input id="emailForm" type="email" value="" class="form-control" name="userEmail" required/>
+					</dd>
+				</dl>
+				
+				<dl class="mb-3">
+					<dt>
+						<label for="passwordForm" > Enter Password: </label>
+					</dt>
+					<dd>
+						 <input id="passwordForm" type="password" value="" class="form-control" name="passwordText" required/>
+					</dd>
+				</dl>
+
+				<dl class="mb-3">
+					<dt>
+						<label for="confirmPasswordForm" > Confirm Password: </label>
+					</dt>
+					<dd>
+						 <input id="confirmPasswordForm" type="password" value="" class="form-control" name="passwordTextConfirm" required/>
+					</dd>
+				</dl>
+
 			</div>
-			<input type="submit" class="btn mx-5 mt-5" style="background-color:#406db4" value="Create Account" name="submit">
+			<input type="submit" class="btn mt-3" style="background-color:#406db4" value="Create Account" name="submit">
 		</form>
 	</div>
 
