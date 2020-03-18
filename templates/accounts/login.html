@@ -10,7 +10,7 @@
 	<div class="container" >
 		<!--The form is in the container and it is a different size depending on the screen. Also, mx-auto means our form will be in the middle of the
 			container not where ever it just ends up being without any help.-->
-		<form class="col-lg-6 col-12 " action="{% url 'login' %}" method="POST">
+		<form class="col-lg-6 col-12 mx-auto" action="{% url 'login' %}" method="POST">
 			{% csrf_token %}
 			<!-- I am using description lists again for the login page because it seperates everything nice. mb-3 so that we are not too close to the next field-->
 			<dl class="mb-3">
