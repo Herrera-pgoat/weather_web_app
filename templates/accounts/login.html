@@ -3,14 +3,34 @@
 {% block title %} Weather Login {%endblock%}
 
 {% block content %}
-	<h1> Log in page </h1>
+	<!-- centering the text on the heading of this page and it is now its own container -->
+	<h1 class="text-center container mb-3"> Login </h1>
 	{% include 'partials/_alerts.html' %}
-	<form action="{% url 'login' %}" method="POST">
-		{% csrf_token %}
-		<span > Enter username: </span> <input type="text" value="" name="usernameText" />
-		<br>
-		<span> Enter password: </span> <input type="password"  value="" name="passwordText" />
-		<br>
-		<input type="submit" class="btn mx-5 mt-5" style="background-color:#5990e9" value="Sign in" name="submit">
-	</form>
+	<!--Putting this entire form into a container  -->
+	<div class="container" >
+		<!--The form is in the container and it is a different size depending on the screen. Also, mx-auto means our form will be in the middle of the
+			container not where ever it just ends up being without any help.-->
+		<form class="col-lg-6 col-12 " action="{% url 'login' %}" method="POST">
+			{% csrf_token %}
+			<!-- I am using description lists again for the login page because it seperates everything nice. mb-3 so that we are not too close to the next field-->
+			<dl class="mb-3">
+				<dt>
+					<label for="loginUsername" > Enter username: </label>
+				</dt>
+				<dd>
+					<input id="loginUsername" class="form-control" type="text" value="" name="usernameText" />
+				</dd>
+			</dl>
+			<!--We do not have an mb-3 here because we have a mt-3 on the button (<input> tag)  -->
+			<dl>
+				<dt>
+					<label for="loginPassword" > Enter password: </label>
+				</dt>
+				<dd>
+					<input id="loginPassword" class="form-control" type="password" value="" name="passwordText" />
+				</dd>
+			</dl>
+			<input type="submit" class="btn mt-3" style="background-color:#5990e9" value="Sign in" name="submit">
+		</form>
+	</div>
 {% endblock %}
