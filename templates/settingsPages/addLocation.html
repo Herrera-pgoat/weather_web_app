@@ -22,7 +22,7 @@ and the overflow x means that any text that would overflow because it doesn't fi
 
 		<!-- A form that they put in the zipcode, city,state, country of the location they want the weather from and then they click a
 			button that will attach that location to their account. And when they go to the main screen they see the weather of locations they wanted--> 
-		<div id="content" class="col-12 col-md-9 col-xl-8 py-md-3 pl-md-5 bd-content card-body"  >
+		<div id="content" class="col-12 col-md-9 col-lg-8"  >
 		<!-- Including alerts here so that when they do add an item to the database we tell them that they did --> 
 			{% include 'partials/_alerts.html' %}
 			<!--This form takes us to settingsMenu view when we submit it -->
@@ -30,26 +30,60 @@ and the overflow x means that any text that would overflow because it doesn't fi
 			{% csrf_token %}
 			<!-- Use this information to attach this location user wants weather from to users and a real location-->
 				<div class="form-group">
-					<span > Enter City Name: </span> <input type="text" value="" name="cityName" required/>
-					<br>
-					<span > Enter State Name: </span> <input type="text" value="" name="stateName" required/>
-					Enter N/A if not applicable 
-					<br>
-						<label for="countries">Choose Country: </label>
-						<select id="countries" name="country" class = "scrollable-menu" required> 
-							{% if countries %}
-								{% for country in countries %}
-									   <option value="{{country.countryName}}">{{country.countryName}}</option>
-								{% endfor %}
-							{% else %}
-									   <option value="nothing">nothing</option>
-							{% endif %}
-						</select>
-					<br>
-					<span> Enter Zipcode: &nbsp </span> <input type="text" value="" name="zipcode" required/>
-					<br>
-				</div>
-				<input type="submit" class="btn mx-5 mt-5" style="background-color:#406db4" value="Add To Weather List" name="submit">
+					<!-- We are putting our form in a dl tag like I have been doing for my other forms too... -->
+					<dl > 
+						<!--Putthing this whole part in a row because I only want three elemtns of the form to be in the same row -->
+						<span class="row">
+							<!--I am putting col-lg-3 because we don't want this input and label to take up the whole row 
+							It is in a span tag because I want both the labell and the tag to be together in their tiny block-->
+							<span class="col-lg-3 col-11">
+							<dt> 
+								<label for="cityNameForm">Enter City Name: </label>  
+							<dd> 
+								<input class=" form-control" id="cityNameForm" type="text" value="" name="cityName" required/> 
+							</dd>
+							</span>
+							<!-- Same reason for this span and col-lg-3 as above! -->
+							<span class="col-lg-3 col-11">
+							<dt>
+								<label for="stateNameForm">Enter State Name: </label> </dt>							
+							</dt>
+							<dd>
+								<input class="form-control" id="stateNameForm" type="text" value="" name="stateName" required/>
+							</dd>
+							</span>
+							
+							<div class="col-lg-4 col-11">
+								<dt>
+									<label for="countries">Choose Country: </label>
+								</dt>
+								
+								<dd>
+									<select id="countries" name="country" class = "form-control scrollable-menu" required> 
+										{% if countries %}
+											{% for country in countries %}
+												   <option value="{{country.countryName}}">{{country.countryName}}</option>
+											{% endfor %}
+										{% else %}
+												   <option value="nothing">nothing</option>
+										{% endif %}
+									</select>
+								</dd>
+							</div>
+						</span>
+						<!--This last part of the form is not in the same row as stuff above  -->
+						<div class="row col-lg-4 col-11 ">
+							<dt>
+								<label for="zipcodeForm"> Enter Zipcode: </label>
+							</dt>
+							<dd>
+								<input class="form-control" id ="zipcodeForm" type="text" value="" name="zipcode" required/>
+							</dd>
+						</div>
+					</dl>	<!-- End of the description list. I know the closing tag says it but I want to say it with a comment to make it clear-->
+				</div> <!--This div is the end of the form group stuff -->
+				<!--This button will submit the form so that we use POST to go to back to this page but wiht a different request-->
+				<input type="submit" class="btn " style="background-color:#406db4" value="Add To Weather List" name="submit">
 			</form>
 		</div>
 	</div>
