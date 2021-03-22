@@ -3,7 +3,7 @@ This is a weather application that lets users sign in and add locations they wan
 Uses Django framework with Postgres database. 
 Deployed application using digital ocean. 
 
-URL to access site: http://68.183.59.189/
+I stopped the website so now it is no longer online :( . I wasn't using it and it took money to keep online.
 
 I think I might need to do this to see github pushes to webpages: 
 sudo systemctl restart nginx
